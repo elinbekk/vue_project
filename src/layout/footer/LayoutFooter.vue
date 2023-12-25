@@ -1,5 +1,7 @@
 <template>
-  <p class="footer-text">ITIS, lab 42, CookBook</p>
+  <div class="footer">
+    <p class="footer-text">ITIS, lab 42, CookBook</p>
+  </div>
 </template>
 
 <script>
@@ -10,11 +12,17 @@ export default {
 
 
 <style scoped>
+.footer{
+  background-color: #333333;
+  height: 50px;
+}
 .footer-text {
   text-align: center;
-  font-size: 0.8em;
-  color: #555;
-  margin-top: 20px;
+  font-size: 1em;
+  color: #ffffff;
+  padding-bottom: 1em;
+  padding-top: 1em;
 }
+
 </style>
 

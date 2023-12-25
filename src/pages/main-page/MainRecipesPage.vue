@@ -1,8 +1,8 @@
 <template>
   <div class="main_page">
-    <h2 class="header">Что приготовить?</h2>
+    <h2 class="header">CookBook</h2>
     <div class="search-form">
-      <input v-model="searchQuery" @input="filterRecipes" placeholder="Поиск блюд"/>
+      <input class="search" v-model="searchQuery" @input="filterRecipes" placeholder="Искать тут"/>
     </div>
     <div class="recipe-cards">
       <div v-for="recipe in filteredRecipes" :key="recipe.id" @click="navigateToDetailsPage(recipe)" class="recipe-card">
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     navigateToDetailsPage(recipe) {
-      this.$router.push({name: 'recipe-details', params: {id: recipe.id},  props:  });
+      this.$router.push({name: 'recipe-details', params: {id: recipe.id}});
     },
     filterRecipes() {
     },
@@ -63,8 +63,6 @@ export default {
 </script>
 <style scoped>
 .main_page{
-  margin: 0 auto;
-  padding: 20px;
   text-align: center;
 }
 .recipe-card {
@@ -76,8 +74,18 @@ export default {
   margin-bottom: 20px;
 }
 
-.search-form {
-  margin-bottom: 20px;
+.search{
+  width: 80%;
+  height: calc(2rem + 2px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgb(128, 128, 128);
+  background-color: #f1f1f1;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  padding-left: 1em;
 }
 
 
@@ -87,7 +95,7 @@ export default {
   grid-gap: 20px;
   justify-items: center;
   padding: 100px;
-  background-color: #E3FDFD;
+  background-color: rgba(197, 237, 210, 0.7);;
   border-radius: 1rem;
   margin: 50px;
 }

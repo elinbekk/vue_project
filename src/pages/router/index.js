@@ -12,7 +12,6 @@ const router = createRouter({
                 path: '/recipes/:id',
                 name: 'recipe-details',
                 component: () => import('../detail-page/DetailRecipesPage.vue'),
-                props:
             },
             {
                 path:'/favourite',
