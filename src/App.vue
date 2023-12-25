@@ -1,9 +1,13 @@
 <template>
   <div class="page">
-  <header><LayoutHeader></LayoutHeader></header>
-  <MainRecipesPage/>
-<!--  <router-view/>-->
-  <footer><LayoutFooter></LayoutFooter></footer>
+    <header>
+      <LayoutHeader></LayoutHeader>
+    </header>
+<!--    <MainRecipesPage/>-->
+    <router-view/>
+    <footer>
+      <LayoutFooter></LayoutFooter>
+    </footer>
   </div>
 </template>
 <script>

@@ -5,10 +5,10 @@
       <input v-model="searchQuery" @input="filterRecipes" placeholder="Поиск блюд"/>
     </div>
     <div class="recipe-cards">
-      <div v-for="recipe in filteredRecipes" :key="recipe.id" @click="redirectToDetails(recipe.id)" class="recipe-card">
+      <div v-for="recipe in filteredRecipes" :key="recipe.id" @click="navigateToDetailsPage(recipe)" class="recipe-card">
         <img :src="recipe.imageUrl" alt="recipe-image"/>
         <p>{{ recipe.name }}</p>
-        <button class="button-like">
+        <button class="button-like" @click="saveAsFavourite(recipe)">
           <i class="heart"></i>
         </button>
       </div>
@@ -26,13 +26,15 @@ export default {
           id: 1,
           name: 'Паста Карбонара',
           imageUrl: 'https://mamadona.ru/ckfinder/userfiles/images/s1200(1).jpg',
-          description: 'Описание пасты Карбонара и как ее приготовить.'
+          description: 'Описание пасты Карбонара и как ее приготовить.',
+          images: ['https://sovkusom.ru/wp-content/uploads/blog/i/italyanskie-blyuda/7.jpg', 'https://attuale.ru/wp-content/uploads/2018/01/pasta-karbonara-photo-7.jpg']
         },
         {
           id: 2,
           name: 'Греческий салат',
           imageUrl: 'https://static.tildacdn.com/tild3566-3363-4464-b138-613432383762/DSC_4013_1.jpg',
-          description: 'Описание греческого салата и как его приготовить.'
+          description: 'Описание греческого салата и как его приготовить.',
+          images: ['https://sovkusom.ru/wp-content/uploads/blog/i/italyanskie-blyuda/7.jpg', 'https://attuale.ru/wp-content/uploads/2018/01/pasta-karbonara-photo-7.jpg']
         },
       ],
       searchQuery: ''
@@ -46,19 +48,27 @@ export default {
     }
   },
   methods: {
-    redirectToDetails(recipeId) {
-      this.$router.push({name: 'recipe-details', params: {id: recipeId}});
+    navigateToDetailsPage(recipe) {
+      this.$router.push({name: 'recipe-details', params: {id: recipe.id},  props:  });
     },
     filterRecipes() {
+    },
+    saveAsFavourite(recipe){
+      let recipeId = 'id'+ recipe.id;
+      console.log(recipeId)
+      localStorage[recipeId] = JSON.stringify(recipe);
     }
   }
 };
 </script>
 <style scoped>
-.main_page {
+.main_page{
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+}
+.recipe-card {
+  cursor: pointer;
 }
 
 .header {
