@@ -1,74 +1,22 @@
-<!--<template>
+<template>
   <div class="main_page">
     <h2 class="header">Избранное</h2>
     <div class="search-form">
-      <input v-model="searchQuery" @input="filterRecipes" placeholder="Поиск блюд"/>
+      <input class="search" v-model="searchQuery" placeholder="Поиск блюд"/>
     </div>
     <div class="recipe-cards">
-      <div v-for="recipe in filteredRecipes" :key="recipe.id" @click="navigateToDetailsPage(recipe)"
+      <div v-for="recipe in filteredRecipes" :key="recipe.id"
            class="recipe-card">
-        <img :src="recipe.imageUrl" alt="recipe-image"/>
-        <p>{{ recipe.name }}</p>
+        <div @click="navigateToDetailsPage(recipe)">
+          <img :src="recipe.imageUrl" alt="recipe-image"/>
+          <p>{{ recipe.name }}</p>
+        </div>
         <button class="button-delete" @click="deleteFromFavourite(recipe)">
           <i class="delete"></i>
         </button>
       </div>
     </div>
   </div>
-
-
-</template>
-
-<script>
-export default {
-  name: "FavouritePage",
-  data(){
-
-  },
-  computed: {
-    filteredRecipes() {
-      return this.recipes.filter(recipe =>
-          recipe.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    }
-  },
-  created() {
-    for(let i=0; i<localStorage.length; i++) {
-      let key = localStorage.key(i);
-      this.recipes[i] = localStorage.getItem(key);
-    }
-  },
-  methods: {
-    navigateToDetailsPage(recipe) {
-      this.$router.push({name: 'recipe-details', params: {id: recipe.id}});
-    },
-    filterRecipes() {
-    },
-    deleteFromFavourite(recipe) {
-      window.localStorage.removeItem('id'+recipe.id);
-    }
-  }
-};
-</script>-->
-<template>
-<!--  <div class="main_page">
-    <h2 class="header">Избранное</h2>
-    <div class="search-form">
-      <input v-model="searchQuery" @input="filterRecipes" placeholder="Поиск блюд"/>
-    </div>
-    <div class="recipe-cards">
-      <div v-for="recipe in filteredRecipes" :key="recipe.id" @click="navigateToDetailsPage(recipe)"
-           class="recipe-card">
-        <img :src="recipe.imageUrl" alt="recipe-image"/>
-        <p>{{ recipe.name }}</p>
-        <button class="button-delete" @click="deleteFromFavourite(recipe)">
-          <i class="delete"></i>
-        </button>
-      </div>
-    </div>
-  </div>-->
-
-
 </template>
 
 <script>
@@ -76,7 +24,7 @@ export default {
   name: "FavouritePage",
   data() {
     return {
-      recipes: [], // Initialize recipes as an empty array
+      recipes: [],
       searchQuery: ""
     };
   },
@@ -95,13 +43,9 @@ export default {
   },
   methods: {
     navigateToDetailsPage(recipe) {
-      this.$router.push({ name: "recipe-details", params: { id: recipe.id }});
-    },
-    filterRecipes() {
-      // Implement filtering logic if needed
+      this.$router.push({name: "recipe-details", params: {id: recipe.id}});
     },
     deleteFromFavourite(recipe) {
-      // Remove the recipe from the local storage and update the component state
       window.localStorage.removeItem("id" + recipe.id);
       this.recipes = this.recipes.filter(r => r.id !== recipe.id);
     }
@@ -110,11 +54,13 @@ export default {
 </script>
 
 <style>
-.main_page{
+.main_page {
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+  min-height: max-content;
 }
+
 .recipe-card {
   cursor: pointer;
 }
@@ -128,6 +74,19 @@ export default {
   margin-bottom: 20px;
 }
 
+.search {
+  width: 80%;
+  height: calc(2rem + 2px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgb(128, 128, 128);
+  background-color: #f1f1f1;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  padding-left: 1em;
+}
 
 .recipe-cards {
   display: grid;
@@ -163,7 +122,8 @@ export default {
   border: none;
   background-color: transparent;
 }
-.delete{
+
+.delete {
   display: inline-block;
   width: 35px;
   height: 35px;

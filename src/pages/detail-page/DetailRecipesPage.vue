@@ -1,6 +1,6 @@
 <template>
   <div class="detail-content">
-    <div v-for="recipe in this.recipes" :key="recipe.id" class="recipe-card">
+    <template v-for="recipe in this.recipes" :key="recipe.id" class="recipe-card">
       <div v-if="recipe.id === Number($route.params.id)">
         <div class="img-block">
           <h2 class="header">{{ recipe.name }}</h2>
@@ -19,10 +19,10 @@
               </div>
             </div>
             <button class="carousel-control-prev" @click="prevSlide">
-              <span class="carousel-control-prev-icon"></span>
+              <i class="carousel-control-prev-icon"></i>
             </button>
             <button class="carousel-control-next" @click="nextSlide">
-              <span class="carousel-control-next-icon"></span>
+              <i class="carousel-control-next-icon"></i>
             </button>
           </div>
         </div>
@@ -30,35 +30,16 @@
           <i class="heart"></i>
         </button>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
 <script>
 export default {
+  props:['recipes'],
   data() {
     return {
-      currentIndex: 0,
-      recipes: [
-        {
-          id: 1,
-          name: 'Паста Карбонара',
-          imageUrl: 'https://mamadona.ru/ckfinder/userfiles/images/s1200(1).jpg',
-          description: 'Описание пасты Карбонара и как ее приготовить.',
-          images: [
-            'https://attuale.ru/wp-content/uploads/2018/01/pasta-karbonara-photo-7.jpg',
-            'https://w.forfun.com/fetch/71/71f0c755f4b257fb9987c25743d16388.jpeg',
-            'https://sovkusom.ru/wp-content/uploads/blog/i/italyanskie-blyuda/7.jpg'
-          ]
-        },
-        {
-          id: 2,
-          name: 'Греческий салат',
-          imageUrl: 'https://static.tildacdn.com/tild3566-3363-4464-b138-613432383762/DSC_4013_1.jpg',
-          description: 'Описание греческого салата и как его приготовить.',
-          images: ['https://sovkusom.ru/wp-content/uploads/blog/i/italyanskie-blyuda/7.jpg', 'https://attuale.ru/wp-content/uploads/2018/01/pasta-karbonara-photo-7.jpg']
-        },
-      ],
+      currentIndex: 0
     };
   },
   created() {
@@ -86,9 +67,9 @@ export default {
 
 .img-block {
   display: flex;
-  flex-direction: column;
   align-items: center;
   column-gap: 30px;
+  flex-direction: column;
 }
 
 .header {
@@ -111,6 +92,8 @@ export default {
 }
 .recipe-desc{
   margin: 20px;
+  font-size: 20px;
+  padding: 10px;;
 }
 .carousel{
   margin: 20px;
@@ -135,25 +118,25 @@ export default {
   background: transparent;
   border: none;
   cursor: pointer;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  background: transparent;
-  border: none;
-  cursor: pointer;
   width: 30px;
   height: 30px;
   margin-top: auto;
   margin-bottom: auto;
 }
 
+.carousel-control-prev{
+  background-image: url("src/assets/back-svgrepo-com.svg");
+}
+.carousel-control-next {
+  background-image: url("src/assets/next-svgrepo-com.svg");
+}
+
 .carousel-control-prev {
-  margin-left: 10px;
+  margin-right: 530px;
 }
 
 .carousel-control-next {
-  margin-right: 10px;
+  margin-right: 0;
 }
 
 .carousel-control-prev-icon,
@@ -167,7 +150,7 @@ export default {
 
 .button-like {
   position: absolute;
-  bottom: -340px;
+  bottom: -310px;
   right: 100px;
   margin: 10px;
   background-color: transparent;
@@ -182,6 +165,4 @@ export default {
   background-size: contain;
   background-repeat: no-repeat;
 }
-
-
 </style>
