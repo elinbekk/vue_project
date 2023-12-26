@@ -139,6 +139,7 @@ export default {
     saveAsFavourite(recipe) {
       let recipeId = 'id' + recipe.id;
       console.log(recipeId)
+      alert("Рецепт добавлен в избранное!")
       localStorage[recipeId] = JSON.stringify(recipe);
     }
   }

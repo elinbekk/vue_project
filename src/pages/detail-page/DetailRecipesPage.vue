@@ -120,14 +120,14 @@ export default {
   cursor: pointer;
   width: 30px;
   height: 30px;
-  margin-top: auto;
-  margin-bottom: auto;
+  align-items: center;
 }
 
-.carousel-control-prev{
+.carousel-control-prev-icon{
   background-image: url("src/assets/back-svgrepo-com.svg");
+
 }
-.carousel-control-next {
+.carousel-control-next-icon{
   background-image: url("src/assets/next-svgrepo-com.svg");
 }
 
@@ -146,6 +146,8 @@ export default {
   background-color: grey;
   border-radius: 50%;
   display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .button-like {
